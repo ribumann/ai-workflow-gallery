@@ -127,8 +127,10 @@ reports/counters, failed tests or zero executed tests. Browser suites mock sessi
 responses; they do not prove live Entra authentication, Playground data-plane protection,
 or deployed acceptance.
 
-Additional editable architecture diagrams, deployment guidance and a validation/evidence
-index are in [`docs/`](docs/).
+The [guided C4 architecture](docs/architecture.md) covers landscape, context,
+containers, components, selected code structures, runtime flows and public/private/local
+deployment, with supporting data and operations views. Deployment guidance and a
+validation/evidence index are in [`docs/`](docs/).
 
 
 ## Public source release candidate
