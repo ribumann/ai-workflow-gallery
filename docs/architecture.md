@@ -1,4 +1,61 @@
-# Architecture and trust boundaries
+# C4 architecture and trust boundaries
+
+## Guided architecture tour
+
+This is the architecture of the released application, not a proposed rewrite.
+Read the views in the order below: C4 moves from the whole system to the code
+inside it. Dynamic views explain time; deployment views explain where that code
+runs. The data and operations views fill in concerns that C4 boxes alone cannot
+explain. Each view links back to implementation evidence.
+
+| View | Question it answers | Start here |
+|---|---|---|
+| System landscape | What people and neighboring systems participate? | [Landscape](diagrams/c4/landscape.md) |
+| Level 1: system context | What is the gallery responsible for, and where does its responsibility end? | [Context](diagrams/c4/context.md) |
+| Level 2: containers | What applications and data stores make up one installation? | [Containers](diagrams/c4/containers.md) |
+| Level 3: components | How do the browser, API and importer divide responsibilities? | [Components](diagrams/c4/components.md) |
+| Level 4: code | Which concrete types implement the important boundaries? | [Code](diagrams/c4/code.md) |
+| Dynamic views | How do reads, MCP, proposals, writes and imports unfold? | [Runtime walkthroughs](diagrams/c4/dynamic.md) |
+| Deployment views | Where are containers hosted, and which network/identity boundaries apply? | [Public, private and local deployment](diagrams/c4/deployment.md) |
+| Supporting data view | What is persisted, related, scoped and concurrency-controlled? | [Data model](diagrams/c4/data.md) |
+| Supporting operations view | What happens on failure, scale-out, change and recovery? | [Operations and trade-offs](diagrams/c4/operations.md) |
+
+### How to read C4
+
+A **software system** provides a capability to people or other systems. A
+**container** is an independently running application or data store, not
+necessarily a Docker container. A **component** is a responsibility inside a
+container, not another deployment. **Code** shows selected classes/interfaces and
+their actual dependencies; it is not a diagram of every source file.
+
+Solid arrows describe interactions or dependencies and carry an action/protocol.
+Dashed arrows describe optional integrations, configuration dependencies or
+out-of-band delivery as labeled. A boundary labeled "logical" is not a firewall.
+Network, identity and collection boundaries are different things; none can be
+substituted for another. These views use ordinary Mermaid notation with explicit
+C4 element labels so GitHub renders them without a separate C4 renderer.
+
+Try reading one task: find the visitor in Context, follow SPA -> API -> SQL in
+Containers, zoom into authorization -> Tasks -> AppDbContext in Components, then
+read the private/public read sequence in Dynamic. Only then inspect Deployment
+to see how the same logical interaction crosses Azure services and subnets.
+
+### Scope and evidence
+
+The code baseline is the v1.0.1 source family. Deployment observations describe the
+release state on 8 November 2026, not a continuously refreshed inventory.
+Examples deliberately omit private resource identifiers, tenant IDs and credentials.
+The public and private profiles are alternative configurations of one application,
+not components that call each other.
+
+The public gallery is read-only, including Playground: its write switch is off.
+Optional Playground authoring was exercised on a disposable sample that is now
+retired. The retained private UAT uses a legacy-schema recovery worker; the
+published catalog-schema worker must not be substituted into it. Detailed schema
+and release caveats appear in the deployment view and
+[validation index](playground-validation.md).
+
+The remainder of this page retains the detailed authorization contract.
 
 The application supports a private Entra profile and an explicitly enabled anonymous
 public profile. Public access is scoped to one selected collection per request; it does
@@ -13,12 +70,15 @@ multiple organizations and host multiple code-configured collections. Collection
 capabilities and request authorization are shared mechanisms, not one deployment per
 organization. There is no self-service membership, organization administration or
 automatic per-organization isolation; adding such rules requires explicit code and
-configuration changes. The anonymous sample is a separate configuration of this app,
-with exactly two published read-only collections and one shared writeable Playground.
+configuration changes. The anonymous profile is a separate configuration of this app,
+with exactly two published read-only collections and one shared Playground whose
+authoring is separately opt-in. The released public deployment leaves that opt-in off.
 
-![Public Playground architecture](diagrams/public-playground-architecture.svg)
+![Optional Public Playground architecture](diagrams/public-playground-architecture.svg)
 
-[Editable Mermaid source](diagrams/public-playground-architecture.mmd).
+[Editable Mermaid source](diagrams/public-playground-architecture.mmd). This earlier
+feature diagram describes the optional protected authoring topology, not the
+current public deployment; use the C4 deployment view for that distinction.
 
 ## Collection request flow
 
