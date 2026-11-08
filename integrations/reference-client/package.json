@@ -1,0 +1,11 @@
+{
+  "name": "gallery-mcp-reference-client",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": { "start": "node client.mjs", "test": "node --test" },
+  "dependencies": {
+    "@azure/msal-node": "^5.0.0",
+    "@modelcontextprotocol/sdk": "^1.27.1"
+  }
+}

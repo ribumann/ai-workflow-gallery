@@ -1,0 +1,55 @@
+name: Copilot setup steps
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+      - frontend/package-lock.json
+      - api/src/src.csproj
+      - api/tests/WorkflowGallery.Api.Tests.csproj
+      - .config/dotnet-tools.json
+      - global.json
+      - integrations/reference-client/package-lock.json
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+permissions:
+  contents: read
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Restore frontend dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Restore registered MCP reference-client dependencies
+        run: npm --prefix integrations/reference-client ci
+      - name: Restore backend and migration tools
+        run: |
+          dotnet restore api/tests/WorkflowGallery.Api.Tests.csproj
+          dotnet tool restore
+      - name: Install browser test tools
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Verify test tooling is available
+        run: |
+          dotnet --version
+          dotnet ef --version
+          node --version
+          npm --prefix frontend exec -- playwright --version

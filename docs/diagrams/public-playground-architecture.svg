@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="630" viewBox="0 0 1180 630" role="img" aria-labelledby="title desc">
+  <title id="title">Public Playground architecture and trust boundaries</title>
+  <desc id="desc">Anonymous visitors use a public SPA and API. A validated collection capability separates two published read-only catalogs from the opt-in shared disposable Playground, whose data and files use scoped protections.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#46627f"/></marker>
+    <style>
+      text{font-family:Segoe UI,Arial,sans-serif;fill:#162b43}.title{font-size:26px;font-weight:700}.label{font-size:18px;font-weight:600}.small{font-size:14px}.note{font-size:13px;fill:#38536c}.node{stroke:#46627f;stroke-width:2;rx:14}.line{stroke:#46627f;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1180" height="630" fill="#f7fafc"/>
+  <text x="50" y="52" class="title">Public collections: scoped access, isolated Playground writes</text>
+  <rect x="50" y="135" width="170" height="75" class="node" fill="#e7f0f8"/>
+  <text x="135" y="168" text-anchor="middle" class="label">Anonymous visitor</text>
+  <text x="135" y="191" text-anchor="middle" class="small">No Entra principal</text>
+  <rect x="290" y="135" width="170" height="75" class="node" fill="#e7f0f8"/>
+  <text x="375" y="168" text-anchor="middle" class="label">Public SPA</text>
+  <text x="375" y="191" text-anchor="middle" class="small">Capability-aware UI</text>
+  <rect x="530" y="125" width="245" height="95" class="node" fill="#e4f3ef"/>
+  <text x="652" y="160" text-anchor="middle" class="label">Functions API</text>
+  <text x="652" y="184" text-anchor="middle" class="small">Validated request-scoped collection</text>
+  <text x="652" y="203" text-anchor="middle" class="small">No global mutable scope</text>
+  <path d="M220 172H282M460 172H522" class="line"/>
+
+  <rect x="850" y="80" width="280" height="95" class="node" fill="#e7f0f8"/>
+  <text x="990" y="116" text-anchor="middle" class="label">public-techniques</text>
+  <text x="990" y="141" text-anchor="middle" class="small">Published rows; read only</text>
+  <rect x="850" y="205" width="280" height="95" class="node" fill="#e7f0f8"/>
+  <text x="990" y="241" text-anchor="middle" class="label">curated-tools</text>
+  <text x="990" y="266" text-anchor="middle" class="small">Published rows; read only</text>
+  <path d="M775 154H820V126H842M820 154V252H842" class="line"/>
+
+  <rect x="850" y="355" width="280" height="100" class="node" fill="#fff1d8"/>
+  <text x="990" y="390" text-anchor="middle" class="label">playground</text>
+  <text x="990" y="415" text-anchor="middle" class="small">Shared, public, disposable</text>
+  <text x="990" y="438" text-anchor="middle" class="small">Writes default off</text>
+  <path d="M775 190H810V405H842" class="line"/>
+
+  <rect x="520" y="355" width="275" height="100" class="node" fill="#fce8e6"/>
+  <text x="657" y="390" text-anchor="middle" class="label">Catalog SQL</text>
+  <text x="657" y="415" text-anchor="middle" class="small">Collection triggers, references,</text>
+  <text x="657" y="438" text-anchor="middle" class="small">5,000-row / 512-MiB bounds</text>
+  <path d="M850 405H803" class="line"/>
+
+  <rect x="165" y="355" width="275" height="100" class="node" fill="#eee9fa"/>
+  <text x="302" y="390" text-anchor="middle" class="label">Playground files</text>
+  <text x="302" y="415" text-anchor="middle" class="small">Separate account + identity</text>
+  <text x="302" y="438" text-anchor="middle" class="small">512-MiB cumulative upload budget</text>
+  <path d="M520 405H448" class="line"/>
+
+  <rect x="50" y="520" width="1080" height="55" rx="10" fill="#edf2f7"/>
+  <text x="590" y="553" text-anchor="middle" class="note">Anonymous access remains unauthenticated. The sandbox actor is attribution only; feature 010 customer/organization tenancy is not implemented.</text>
+</svg>

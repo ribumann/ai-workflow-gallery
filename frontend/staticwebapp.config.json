@@ -1,0 +1,25 @@
+{
+  "globalHeaders": {
+    "Cache-Control": "no-cache"
+  },
+  "routes": [
+    {
+      "route": "/assets/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/.well-known/oauth-protected-resource/api/mcp",
+      "rewrite": "/api/oauth-resource-metadata"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/api/*", "/.auth/*", "/downloads/*", "/*.{svg,png,jpg,jpeg,ico,css,js,map}"]
+  },
+  "mimeTypes": {
+    ".md": "text/markdown",
+    ".zip": "application/zip"
+  }
+}

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="920" viewBox="0 0 1280 920" role="img" aria-labelledby="title description">
+  <title id="title">Future customer tenancy and in-tenant organizations</title>
+  <desc id="description">Specification-only design. Verified Entra identity passes deployment admission and explicit customer membership checks. Customer A and Customer B are separate isolation boundaries, each containing two organizations with scoped settings and resources. No implicit cross-customer sharing exists. The current release still provides one shared gallery.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1">
+      <stop stop-color="#081322"/>
+      <stop offset="1" stop-color="#12263c"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8" fill="none" stroke="#9bb6d5" stroke-width="1.5"/>
+    </marker>
+    <style>
+      text{font-family:Segoe UI,Arial,sans-serif;fill:#edf5ff}
+      .title{font-size:34px;font-weight:650}
+      .heading{font-size:23px;font-weight:650}
+      .body{font-size:18px}
+      .small{font-size:16px;fill:#b8cce3}
+      .label{font-size:13px;font-weight:700;letter-spacing:1.6px}
+      .line{fill:none;stroke:#9bb6d5;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1280" height="920" rx="24" fill="url(#background)"/>
+  <text x="44" y="58" class="title">Identity is not an isolation boundary.</text>
+  <text x="44" y="92" class="body" fill="#b8cce3">Future customer tenancy and organization configuration</text>
+  <rect x="972" y="35" width="264" height="36" rx="18" fill="#392f4e" stroke="#bc99ec"/>
+  <text x="1104" y="58" class="label" text-anchor="middle" fill="#e1caff">SPECIFICATION ONLY</text>
+  <rect x="44" y="116" width="1192" height="42" rx="10" fill="#243048"/>
+  <text x="640" y="143" class="small" text-anchor="middle">CURRENT RELEASE: one shared gallery for admitted tenants. No customer or organization isolation is claimed.</text>
+
+  <rect x="264" y="188" width="752" height="116" rx="16" fill="#123b36" stroke="#65d7bd"/>
+  <text x="640" y="219" class="label" text-anchor="middle" fill="#8fead6">TRUSTED IDENTITY + EXPLICIT AUTHORIZATION</text>
+  <text x="640" y="251" class="body" text-anchor="middle">Verify tid + oid  /  Apply deployment admission  /  Check membership</text>
+  <text x="640" y="279" class="small" text-anchor="middle">A requested customer or organization ID never grants authority.</text>
+  <path d="M480 304V330H326V352" class="line"/>
+  <path d="M800 304V330H954V352" class="line"/>
+
+  <rect x="44" y="356" width="564" height="360" rx="18" fill="#10253d" stroke="#5da9ff" stroke-width="2"/>
+  <rect x="672" y="356" width="564" height="360" rx="18" fill="#102d35" stroke="#65d7bd" stroke-width="2"/>
+  <text x="72" y="395" class="heading">Customer A</text>
+  <text x="1208" y="395" class="heading" text-anchor="end">Customer B</text>
+  <text x="72" y="423" class="small">Explicit membership. Independent policy.</text>
+  <text x="700" y="423" class="small">Separate membership. Separate data.</text>
+
+  <rect x="72" y="446" width="240" height="106" rx="12" fill="#193953" stroke="#5487b4"/>
+  <rect x="340" y="446" width="240" height="106" rx="12" fill="#193953" stroke="#5487b4"/>
+  <text x="94" y="478" class="body" font-weight="650">Organization A1</text>
+  <text x="94" y="506" class="small">Org membership</text>
+  <text x="94" y="530" class="small">Effective settings</text>
+  <text x="362" y="478" class="body" font-weight="650">Organization A2</text>
+  <text x="362" y="506" class="small">Org membership</text>
+  <text x="362" y="530" class="small">Effective settings</text>
+  <rect x="700" y="446" width="240" height="106" rx="12" fill="#19413f" stroke="#518f83"/>
+  <rect x="968" y="446" width="240" height="106" rx="12" fill="#19413f" stroke="#518f83"/>
+  <text x="722" y="478" class="body" font-weight="650">Organization B1</text>
+  <text x="722" y="506" class="small">Org membership</text>
+  <text x="722" y="530" class="small">Effective settings</text>
+  <text x="990" y="478" class="body" font-weight="650">Organization B2</text>
+  <text x="990" y="506" class="small">Org membership</text>
+  <text x="990" y="530" class="small">Effective settings</text>
+
+  <rect x="72" y="578" width="508" height="56" rx="10" fill="#163048"/>
+  <rect x="700" y="578" width="508" height="56" rx="10" fill="#163e3c"/>
+  <text x="326" y="602" class="small" text-anchor="middle">Customer-qualified SQL / blobs / search / caches / jobs</text>
+  <text x="326" y="623" class="small" text-anchor="middle">Organization visibility enforced on every operation</text>
+  <text x="954" y="602" class="small" text-anchor="middle">Customer-qualified SQL / blobs / search / caches / jobs</text>
+  <text x="954" y="623" class="small" text-anchor="middle">Organization visibility enforced on every operation</text>
+  <text x="326" y="671" class="small" text-anchor="middle">Customer-wide or cross-org sharing: explicit policy only</text>
+  <text x="954" y="671" class="small" text-anchor="middle">Customer-wide or cross-org sharing: explicit policy only</text>
+  <path d="M640 370V705" stroke="#8091ae" stroke-width="1.5" stroke-dasharray="5 7"/>
+  <rect x="625" y="469" width="30" height="140" rx="12" fill="#0c1a2c"/>
+  <text transform="translate(645 539) rotate(-90)" text-anchor="middle" class="label" fill="#c6d6e8">NO IMPLICIT SHARING</text>
+
+  <path d="M326 716V746" class="line"/>
+  <path d="M954 716V746" class="line"/>
+  <rect x="44" y="752" width="1192" height="96" rx="16" fill="#182c43" stroke="#45627f"/>
+  <text x="640" y="785" class="heading" text-anchor="middle">One execution context, preserved end to end.</text>
+  <text x="640" y="817" class="body" text-anchor="middle">Acting user + authorized customer + organization scope + current policy</text>
+  <text x="44" y="884" class="small">Revalidate through browser / API / MCP / files / jobs / exports. Child settings cannot widen parent security policy.</text>
+</svg>

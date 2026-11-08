@@ -1,0 +1,20 @@
+{
+  "public-techniques": {
+    "title": "Public AI Techniques",
+    "organization": "Public collection",
+    "accent": "#07529c",
+    "shareChannels": ["copy"]
+  },
+  "playground": {
+    "title": "AI Workflow Playground",
+    "organization": "Shared public disposable sandbox",
+    "accent": "#07529c",
+    "shareChannels": ["copy"]
+  },
+  "curated-tools": {
+    "title": "Curated AI Tools",
+    "organization": "Reviewed collection",
+    "accent": "#62308b",
+    "shareChannels": ["copy"]
+  }
+}

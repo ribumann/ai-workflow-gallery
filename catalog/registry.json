@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "kinds": [
+    { "id": "prompt", "label": "Prompt" },
+    { "id": "instructions", "label": "Instructions" },
+    { "id": "agent", "label": "Agent" },
+    { "id": "skill", "label": "Skill" },
+    { "id": "plugin", "label": "Plugin package" },
+    { "id": "mcp-server", "label": "MCP server" },
+    { "id": "mcp-tool", "label": "MCP tool" },
+    { "id": "connector", "label": "Connector description" },
+    { "id": "hook", "label": "Hook template" },
+    { "id": "automation", "label": "Automation template" }
+  ],
+  "formats": [
+    { "id": "text.plain", "label": "Copyable text" },
+    { "id": "markdown.instructions", "label": "Markdown instructions" },
+    { "id": "agentskills.skill-md", "label": "SKILL.md folder" },
+    { "id": "github.prompt-md", "label": "GitHub prompt file (.prompt.md)" },
+    { "id": "github.agent-md", "label": "GitHub custom agent (.agent.md)" },
+    { "id": "github.hooks-json", "label": "GitHub hooks configuration" },
+    { "id": "mcp.server-json", "label": "MCP server configuration" },
+    { "id": "mcp.tool-json", "label": "MCP tool description" },
+    { "id": "microsoft.declarative-agent", "label": "Microsoft declarative-agent manifest" },
+    { "id": "microsoft.custom-engine-agent", "label": "Microsoft custom-engine agent description" },
+    { "id": "microsoft.plugin", "label": "Microsoft plugin package" },
+    { "id": "microsoft.synced-connector", "label": "Microsoft synced connector description" },
+    { "id": "microsoft.federated-connector", "label": "Microsoft federated connector description" },
+    { "id": "microsoft.powerplatform-connector", "label": "Power Platform connector description" },
+    { "id": "automation.instructions", "label": "Automation setup instructions" },
+    { "id": "anthropic.plugin", "label": "Claude Code plugin package" },
+    { "id": "anthropic.hooks-json", "label": "Claude Code hooks configuration" },
+    { "id": "openai.agents-md", "label": "Codex AGENTS.md" }
+  ],
+  "targets": [
+    {
+      "id": "microsoft.copilot.chat", "label": "Microsoft Copilot Chat", "aliases": ["Copilot Chat"],
+      "provider": "Microsoft", "product": "Copilot", "host": "Chat", "role": "execution",
+      "prerequisites": "An eligible account and organization policy. Work grounding and licensed Microsoft 365 Copilot features have separate requirements.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/plan/copilot-overview", "reviewedOn": "2026-11-05", "note": "Copyable prompts, not installed extensions or proof of work-data access." }
+      ]
+    },
+    {
+      "id": "microsoft.copilot.m365", "label": "Microsoft 365 Copilot", "aliases": ["Microsoft 365", "M365 Copilot"],
+      "provider": "Microsoft", "product": "Microsoft 365 Copilot", "host": "Microsoft 365 Copilot experience", "role": "execution",
+      "prerequisites": "Eligible Microsoft 365 license, account, administrator policy and feature-specific agent or connector access. Support does not extend automatically to every Microsoft 365 app.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/plan/copilot-overview", "reviewedOn": "2026-11-05", "note": "User-supplied prompts; grounding depends on available context." },
+        { "kind": "agent", "formats": ["microsoft.declarative-agent", "microsoft.custom-engine-agent"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/overview", "reviewedOn": "2026-11-05", "note": "Declarative and custom-engine contracts are distinct. Built-in Researcher and Analyst are references, not downloadable definitions." },
+        { "kind": "plugin", "formats": ["microsoft.plugin"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugins-overview", "reviewedOn": "2026-11-05", "note": "Provider-specific distribution; review contained resources and host eligibility separately." },
+        { "kind": "connector", "formats": ["microsoft.synced-connector", "microsoft.federated-connector"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/overview-copilot-connector", "reviewedOn": "2026-11-05", "note": "Synced/indexed and federated/query-time descriptions are different contracts; no connector is provisioned by this gallery." }
+      ]
+    },
+    {
+      "id": "microsoft.copilot.cowork", "label": "Microsoft Copilot Cowork", "aliases": ["Copilot Cowork"],
+      "provider": "Microsoft", "product": "Copilot Cowork", "host": "Cowork", "role": "execution",
+      "prerequisites": "Feature-specific eligible account, license, preview enrollment and administrator policy. Microsoft Copilot Cowork is not Anthropic Cowork.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/cowork/", "reviewedOn": "2026-11-05", "note": "Describe a task and review proposed actions before execution." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/cowork/", "reviewedOn": "2026-11-05", "note": "Review skill dependencies, feature availability and policy before installation." },
+        { "kind": "plugin", "formats": ["microsoft.plugin"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugins-overview", "reviewedOn": "2026-11-05", "note": "Microsoft-specific package; not a portable Claude or Codex plugin." },
+        { "kind": "automation", "formats": ["automation.instructions"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/cowork/", "reviewedOn": "2026-11-05", "note": "Scheduled or event-driven setup template only; the gallery does not schedule or execute work." }
+      ]
+    },
+    {
+      "id": "microsoft.scout.desktop", "label": "Microsoft Scout", "aliases": ["Scout"],
+      "provider": "Microsoft", "product": "Scout", "host": "Desktop", "role": "execution",
+      "prerequisites": "Check the documented device, account, rollout and Frontier access requirements. Frontier is an access program, not this runtime.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-scout/overview", "reviewedOn": "2026-11-05", "note": "Desktop task instructions; no inferred package or connector support." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-scout/overview", "reviewedOn": "2026-11-05", "note": "Documented SKILL.md support in the prerelease desktop experience; review dependencies." },
+        { "kind": "automation", "formats": ["automation.instructions"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-scout/overview", "reviewedOn": "2026-11-05", "note": "Heartbeat/automation setup instructions, not a gallery scheduler." }
+      ]
+    },
+    {
+      "id": "microsoft.copilot.code", "label": "Microsoft Copilot Code", "aliases": ["Copilot Code"],
+      "provider": "Microsoft", "product": "Copilot Code", "host": "Copilot Code", "role": "execution",
+      "prerequisites": "Check documented Frontier access, account, license and rollout requirements. This is separate from Scout and GitHub Copilot.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/code/", "reviewedOn": "2026-11-05", "note": "Copyable coding task instructions, not a GitHub Copilot extension compatibility claim." },
+        { "kind": "automation", "formats": ["automation.instructions"], "sourceUrl": "https://learn.microsoft.com/en-us/copilot/code/", "reviewedOn": "2026-11-05", "note": "Documented automation setup instructions only, no inferred extension package." }
+      ]
+    },
+    {
+      "id": "github.copilot.vscode", "label": "GitHub Copilot in VS Code", "aliases": ["VS Code", "GitHub IDE"],
+      "provider": "GitHub", "product": "Copilot", "host": "VS Code", "role": "execution",
+      "prerequisites": "Eligible GitHub Copilot access, supported VS Code version and organization policy. Tool/server consent is separate.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain", "github.prompt-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Prompt files have a host-specific contract." },
+        { "kind": "instructions", "formats": ["markdown.instructions"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Repository and path-specific instructions." },
+        { "kind": "agent", "formats": ["github.agent-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Custom agent definition; not an installed connection." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Review dependencies and content before use." },
+        { "kind": "mcp-server", "formats": ["mcp.server-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Server configuration describes a connection, not verified readiness." },
+        { "kind": "mcp-tool", "formats": ["mcp.tool-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Individual tool exposed by a separately configured server." }
+      ]
+    },
+    {
+      "id": "github.copilot.app", "label": "GitHub Copilot app", "aliases": ["GitHub app"],
+      "provider": "GitHub", "product": "Copilot", "host": "Copilot app", "role": "execution",
+      "prerequisites": "Eligible account, supported app version and organization policy. Verify each feature in the current client.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Copyable task prompts only; IDE and CLI package support is not extrapolated to the app." }
+      ]
+    },
+    {
+      "id": "github.copilot.cli", "label": "GitHub Copilot CLI", "aliases": ["Copilot CLI", "GitHub CLI"],
+      "provider": "GitHub", "product": "Copilot", "host": "CLI", "role": "execution",
+      "prerequisites": "Eligible account, supported CLI version and organization policy. Review local command execution and tool permissions.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Copyable CLI task instructions." },
+        { "kind": "instructions", "formats": ["markdown.instructions"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Repository instructions, not a promise of identical behavior across clients." },
+        { "kind": "agent", "formats": ["github.agent-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "CLI custom-agent profile." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Skill folder; inspect commands and dependencies before use." },
+        { "kind": "hook", "formats": ["github.hooks-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Hook template can execute local commands after user installation; gallery never runs it." },
+        { "kind": "mcp-server", "formats": ["mcp.server-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Separately authorized server connection required." },
+        { "kind": "mcp-tool", "formats": ["mcp.tool-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "One tool, not its parent server." }
+      ]
+    },
+    {
+      "id": "github.copilot.cloud", "label": "GitHub Copilot cloud agent", "aliases": ["Coding agent", "Cloud agent"],
+      "provider": "GitHub", "product": "Copilot", "host": "Cloud agent", "role": "execution",
+      "prerequisites": "Eligible plan, repository access, organization policy and approved execution environment. Cloud tool restrictions differ from local clients.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Issue/task instructions reviewed before a cloud run." },
+        { "kind": "instructions", "formats": ["markdown.instructions"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Repository instructions." },
+        { "kind": "agent", "formats": ["github.agent-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Cloud custom-agent definition; check tool restrictions." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Cloud skill dependencies must be available in its environment." },
+        { "kind": "mcp-server", "formats": ["mcp.server-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Cloud server policy is distinct from desktop consent." },
+        { "kind": "mcp-tool", "formats": ["mcp.tool-json"], "sourceUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet", "reviewedOn": "2026-11-05", "note": "Readiness requires a separately verified server." }
+      ]
+    },
+    {
+      "id": "openai.codex.cli", "label": "OpenAI Codex CLI", "aliases": ["Codex"],
+      "provider": "OpenAI", "product": "Codex", "host": "CLI", "role": "execution",
+      "prerequisites": "Eligible OpenAI access, supported CLI and local execution permissions. This registry is descriptive; no live adapter is installed.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://developers.openai.com/codex/cli/", "reviewedOn": "2026-11-05", "note": "Copyable coding task." },
+        { "kind": "instructions", "formats": ["openai.agents-md"], "sourceUrl": "https://developers.openai.com/codex/guides/agents-md/", "reviewedOn": "2026-11-05", "note": "Codex AGENTS.md profile; no automatic conversion from another provider." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://developers.openai.com/codex/skills/", "reviewedOn": "2026-11-05", "note": "Review dependencies and trust before installing a skill." }
+      ]
+    },
+    {
+      "id": "anthropic.claude-code.cli", "label": "Anthropic Claude Code", "aliases": ["Claude Code"],
+      "provider": "Anthropic", "product": "Claude Code", "host": "CLI", "role": "execution",
+      "prerequisites": "Eligible Anthropic access, supported client and local execution policy. No adapter or credentials are provisioned by this gallery.",
+      "profiles": [
+        { "kind": "prompt", "formats": ["text.plain"], "sourceUrl": "https://code.claude.com/docs/en/features-overview", "reviewedOn": "2026-11-05", "note": "Copyable task instructions." },
+        { "kind": "instructions", "formats": ["markdown.instructions"], "sourceUrl": "https://code.claude.com/docs/en/features-overview", "reviewedOn": "2026-11-05", "note": "CLAUDE.md memory/instructions context." },
+        { "kind": "skill", "formats": ["agentskills.skill-md"], "sourceUrl": "https://code.claude.com/docs/en/features-overview", "reviewedOn": "2026-11-05", "note": "Skill compatibility does not certify scripts or dependencies." },
+        { "kind": "plugin", "formats": ["anthropic.plugin"], "sourceUrl": "https://code.claude.com/docs/en/plugins", "reviewedOn": "2026-11-05", "note": "Claude Code plugin format, not a Microsoft plugin." },
+        { "kind": "hook", "formats": ["anthropic.hooks-json"], "sourceUrl": "https://code.claude.com/docs/en/hooks", "reviewedOn": "2026-11-05", "note": "Command-executing hook template; review before installation." },
+        { "kind": "mcp-server", "formats": ["mcp.server-json"], "sourceUrl": "https://code.claude.com/docs/en/mcp", "reviewedOn": "2026-11-05", "note": "Separately configured and authorized server." },
+        { "kind": "mcp-tool", "formats": ["mcp.tool-json"], "sourceUrl": "https://code.claude.com/docs/en/mcp", "reviewedOn": "2026-11-05", "note": "Individual tool, not an installed server." }
+      ]
+    },
+    { "id": "microsoft.word", "label": "Word", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "Word", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.excel", "label": "Excel", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "Excel", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.powerpoint", "label": "PowerPoint", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "PowerPoint", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.outlook", "label": "Outlook", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "Outlook", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.teams", "label": "Teams", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "Teams", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.onenote", "label": "OneNote", "aliases": [], "provider": "Microsoft", "product": "Microsoft 365", "host": "OneNote", "role": "context", "prerequisites": "App-specific Copilot entitlement and feature availability. Context is not extension support.", "profiles": [] },
+    { "id": "microsoft.edge", "label": "Edge", "aliases": [], "provider": "Microsoft", "product": "Edge", "host": "Browser", "role": "context", "prerequisites": "Browser context and page permissions do not prove an installed extension.", "profiles": [] },
+    { "id": "microsoft.sharepoint", "label": "SharePoint", "aliases": [], "provider": "Microsoft", "product": "SharePoint", "host": "Work data", "role": "context", "prerequisites": "Existing data permissions and applicable grounding license; not an agent runtime.", "profiles": [] },
+    { "id": "microsoft.onedrive", "label": "OneDrive", "aliases": [], "provider": "Microsoft", "product": "OneDrive", "host": "Work data", "role": "context", "prerequisites": "Existing data permissions and applicable grounding license; not an agent runtime.", "profiles": [] },
+    { "id": "microsoft.loop", "label": "Loop", "aliases": [], "provider": "Microsoft", "product": "Loop", "host": "Workspace", "role": "context", "prerequisites": "Workspace permissions and feature-specific requirements; not a general extension runtime.", "profiles": [] },
+    { "id": "microsoft.pages", "label": "Copilot Pages", "aliases": ["Pages"], "provider": "Microsoft", "product": "Copilot", "host": "Pages", "role": "output", "prerequisites": "Check Pages/Notebooks account and storage requirements; output is not an execution target.", "profiles": [] },
+    { "id": "microsoft.notebooks", "label": "Copilot Notebooks", "aliases": ["Notebooks"], "provider": "Microsoft", "product": "Copilot", "host": "Notebooks", "role": "context", "prerequisites": "Check Pages/Notebooks account, grounding and storage requirements.", "profiles": [] },
+    { "id": "microsoft.agent-builder", "label": "Agent Builder", "aliases": [], "provider": "Microsoft", "product": "Copilot", "host": "Authoring", "role": "builder", "prerequisites": "Builder access does not establish a deployed execution host.", "profiles": [] },
+    {
+      "id": "microsoft.copilot-studio", "label": "Copilot Studio / Power Platform", "aliases": ["Power Platform"],
+      "provider": "Microsoft", "product": "Copilot Studio", "host": "Authoring", "role": "builder",
+      "prerequisites": "Environment permissions, connector policy and relevant licensing. This is an authoring contract, not an inferred execution host.",
+      "profiles": [
+        { "kind": "connector", "formats": ["microsoft.powerplatform-connector"], "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/choose-plugin-development-tools", "reviewedOn": "2026-11-05", "note": "Power Platform connector description, separate from synced/federated connectors and MCP." }
+      ]
+    },
+    { "id": "microsoft.agents-toolkit", "label": "Microsoft 365 Agents Toolkit / SDK", "aliases": ["Agents Toolkit", "Agents SDK"], "provider": "Microsoft", "product": "Agents Toolkit / SDK", "host": "Authoring", "role": "builder", "prerequisites": "Development tooling is not proof of runtime availability.", "profiles": [] },
+    { "id": "microsoft.agent365", "label": "Agent 365", "aliases": [], "provider": "Microsoft", "product": "Agent 365", "host": "Governance", "role": "governance", "prerequisites": "Governance and management access is distinct from execution and artifact compatibility.", "profiles": [] },
+    { "id": "microsoft.frontier", "label": "Frontier access program", "aliases": ["Frontier"], "provider": "Microsoft", "product": "Frontier", "host": "Access program", "role": "access-program", "prerequisites": "Feature-specific enrollment and rollout; Frontier is not a runtime or proof of tenant availability.", "profiles": [] }
+  ]
+}

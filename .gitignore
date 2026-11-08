@@ -1,0 +1,16 @@
+# Local tool caches / editor state — not part of the project source.
+.impeccable/
+
+# Scratch file used for commit messages (PowerShell has no heredoc)
+msg.txt
+
+# Reference MCP client dependencies and local build credentials.
+node_modules/
+.env
+.env.local
+!.env.example
+
+# Retained local validation evidence is not source.
+/TestResults/
+/api/tests/TestResults/
+/scripts/__pycache__/

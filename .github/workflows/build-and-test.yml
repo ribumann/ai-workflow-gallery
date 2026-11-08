@@ -1,0 +1,112 @@
+name: Build and test
+
+# Source verification is automatic; deployment remains a separately reviewed operation.
+on:
+  workflow_dispatch: {}
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  public-demo-infra:
+    name: Isolated public demo deployment guards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install local Bicep compiler (no Azure login)
+        run: |
+          az bicep install
+          echo "$HOME/.azure/bin" >> "$GITHUB_PATH"
+      - name: Compile public template and run offline deployment guards
+        shell: pwsh
+        run: ./scripts/test-deploy-public-demo.ps1
+      - name: Set up Node.js for publisher policy assertions
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Verify isolated publisher SQL and compiled identity boundaries
+        run: node --test scripts/playground-reset-safety.test.mjs
+
+  frontend:
+    name: Frontend lint, build, test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Shared frontend validation
+        run: node ../scripts/validate.mjs frontend
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Desktop and mobile browser checks
+        run: node ../scripts/validate.mjs browser
+
+      - name: Upload browser failure traces
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-results
+          path: frontend/test-results
+          retention-days: 7
+
+  reference-client:
+    name: Registered MCP client configuration and SDK transport tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: integrations/reference-client/package-lock.json
+      - run: npm --prefix integrations/reference-client ci
+      - run: node scripts/validate.mjs reference
+
+  api:
+    name: API build, test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Shared API validation and nonzero execution gate
+        run: node scripts/validate.mjs api
+
+      - name: Upload actual API test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: api-test-results
+          path: TestResults/**/*.trx
+          if-no-files-found: error
+          retention-days: 7

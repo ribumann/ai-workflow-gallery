@@ -1,0 +1,25 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "SqlConnectionString": "Server=(localdb)\\mssqllocaldb;Database=WorkflowGalleryDev;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;",
+        "StorageConnectionString": "UseDevelopmentStorage=true",
+        "StorageContainerName": "artifact-files",
+        "Entra__ApiClientId": "<api-app-client-guid>",
+        "Entra__RequiredScope": "Gallery.Access",
+        "Entra__AllowedTenantIds": "<explicitly-admitted-directory-guid>",
+        "Entra__AllowMicrosoftTenant": "false",
+        "Entra__McpResource": "https://<gallery-host>/api/mcp",
+        "FeedbackEmailEndpoint": "https://<communication-services-resource>.communication.azure.com/",
+        "FeedbackEmailSenderAddress": "DoNotReply@<verified-domain>",
+        "FeedbackEmailRecipientAddress": "",
+        "EnableFeedbackEmail": "false",
+        "EnableAiComposer": "false",
+        "EnableDevSeedData": "true",
+        "EnableMcpServer": "true",
+        "EnableMcpWrites": "false",
+        "GalleryBaseUrl": "http://localhost:5173",
+        "APPLICATIONINSIGHTS_CONNECTION_STRING": ""
+    }
+}

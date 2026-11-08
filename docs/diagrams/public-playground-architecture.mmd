@@ -1,0 +1,18 @@
+flowchart LR
+  Visitor[Anonymous visitor]
+  SPA[Public SPA]
+  API[Functions API]
+  Context[Validated request-scoped collection capability]
+  Public[(public-techniques<br/>published read-only)]
+  Curated[(curated-tools<br/>published read-only)]
+  Playground[(playground<br/>shared/public/disposable)]
+  SQL[(Catalog SQL<br/>scoped triggers + bounds)]
+  Blob[(Separate Playground account<br/>container + identity + upload budget)]
+  Actor[Sandbox attribution actor<br/>no Entra identity]
+  Visitor --> SPA --> API --> Context
+  Context --> Public
+  Context --> Curated
+  Context -->|only when write opt-in and DB policy are ready| Playground
+  Playground --> SQL
+  Playground --> Blob
+  Actor -->|audit attribution only| SQL

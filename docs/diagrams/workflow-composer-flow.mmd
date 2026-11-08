@@ -1,0 +1,14 @@
+flowchart LR
+  User[Person describes goal]
+  Composer[Workflow composer]
+  Proposal[Unsaved workflow proposal]
+  Review[Human reviews and edits]
+  Editor[Normal scoped workflow editor]
+  Policy{Selected collection can write?}
+  Save[Explicit save action]
+  Store[(Collection-scoped catalog)]
+  NoExec[No automatic save or execution]
+  User --> Composer --> Proposal --> Review --> Editor --> Policy
+  Policy -->|no| NoExec
+  Policy -->|yes| Save --> Store
+  Composer -. generation never commits .-> Store

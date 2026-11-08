@@ -1,0 +1,26 @@
+flowchart TD
+  Request[REST or MCP request]
+  Scope{Exactly one valid collectionId?}
+  Deny[Reject missing, duplicate, unknown or mismatched scope]
+  Cap[Resolve request-scoped capabilities]
+  Pub[public-techniques<br/>published read only]
+  Cur[curated-tools<br/>published read only]
+  Play[playground]
+  MCP{MCP connection?}
+  Read[Eight existing read tools]
+  Write[Eight reads + twelve existing catalog writes]
+  DB[Collection filters, immutable stamping,<br/>reference checks and database guards]
+  Files[Dedicated Playground attachment storage]
+  Request --> Scope
+  Scope -->|no| Deny
+  Scope -->|yes| Cap
+  Cap --> Pub
+  Cap --> Cur
+  Cap --> Play
+  Pub --> MCP
+  Cur --> MCP
+  MCP -->|published connection| Read
+  Play --> MCP
+  MCP -->|Playground write capability enabled| Write
+  Play --> DB
+  Play --> Files

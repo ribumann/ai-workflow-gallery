@@ -1,0 +1,42 @@
+flowchart TB
+    status["FUTURE DESIGN ONLY<br/>Current release: one shared gallery"]
+    directory["Entra directory<br/>Verified identity: tid + oid"]
+    policy["Deployment admission<br/>Microsoft switch OFF cannot be overridden"]
+    context["Authorize membership + requested context<br/>Client context is a request, never authority"]
+
+    status --- directory
+    directory --> policy --> context
+
+    subgraph customerA["Customer A: isolation boundary"]
+        direction TB
+        memberA["Active customer membership"]
+        orgA["Organization A1<br/>Membership + effective settings"]
+        orgB["Organization A2<br/>Membership + effective settings"]
+        dataA["Customer-qualified resources<br/>SQL / blobs / search / caches / jobs"]
+        sharedA["Customer-wide or cross-org visibility<br/>Explicit policy only"]
+        memberA --> orgA & orgB
+        orgA & orgB --> dataA
+        sharedA --> dataA
+    end
+
+    subgraph customerB["Customer B: isolation boundary"]
+        direction TB
+        memberB["Separate active customer membership"]
+        orgC["Organization B1<br/>Membership + effective settings"]
+        orgD["Organization B2<br/>Membership + effective settings"]
+        dataB["Customer-qualified resources<br/>SQL / blobs / search / caches / jobs"]
+        sharedB["Customer-wide or cross-org visibility<br/>Explicit policy only"]
+        memberB --> orgC & orgD
+        orgC & orgD --> dataB
+        sharedB --> dataB
+    end
+
+    context --> memberA & memberB
+    dataA & dataB --> audit["Scoped audit + limits + revalidation<br/>Preserve boundaries through API, MCP, files, jobs and exports"]
+
+    classDef boundary fill:#10253d,stroke:#5da9ff,color:#f2f7ff
+    classDef future fill:#31253f,stroke:#c49aff,color:#f2f7ff
+    classDef trusted fill:#123b36,stroke:#65d7bd,color:#f2f7ff
+    class status future
+    class directory,policy,context,audit trusted
+    class memberA,orgA,orgB,dataA,sharedA,memberB,orgC,orgD,dataB,sharedB boundary

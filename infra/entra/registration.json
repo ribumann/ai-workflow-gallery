@@ -1,0 +1,15 @@
+{
+  "subscriptionId": "00000000-0000-4000-8000-000000000001",
+  "tenantId": "00000000-0000-4000-8000-000000000002",
+  "scopeId": "00000000-0000-4000-8000-000000000003",
+  "scope": "Gallery.Access",
+  "apiName": "AI Workflow Gallery API",
+  "apiClientId": "00000000-0000-4000-8000-000000000004",
+  "apiObjectId": "00000000-0000-4000-8000-000000000005",
+  "spaName": "AI Workflow Gallery Browser",
+  "spaClientId": "00000000-0000-4000-8000-000000000006",
+  "spaObjectId": "00000000-0000-4000-8000-000000000007",
+  "referenceClientName": "AI Workflow Gallery MCP Reference",
+  "referenceClientId": "00000000-0000-4000-8000-000000000008",
+  "referenceObjectId": "00000000-0000-4000-8000-000000000009"
+}

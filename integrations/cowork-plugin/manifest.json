@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.0.0",
+  "id": "8f3a9c14-5d2b-4e71-9a6c-2f7b0d4e13aa",
+  "name": {
+    "short": "AI Workflow Gallery",
+    "full": "AI Workflow Gallery for Copilot Cowork"
+  },
+  "description": {
+    "short": "Find, follow and contribute reusable AI tasks, workflows and methods",
+    "full": "Teaches Copilot Cowork to use the AI Workflow Gallery through an authorized browser. Public collections are read-only; enabled Playground authoring is shared and disposable. Private deployment access depends on your own sign-in and organizational policy. This skills-only package contains no connector or credentials and does not grant gallery access."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#0F6CBD",
+  "agentSkills": [
+    {
+      "folder": "./skills/ai-workflow-gallery"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Example Research Gallery",
+  "organization": "Example Organization for Applied Research and Collaborative Delivery",
+  "logo": "/branding-example.svg",
+  "favicon": "/branding-example.svg",
+  "accent": "#6B246E",
+  "links": {
+    "support": "https://example.org/support",
+    "privacy": "https://example.org/privacy",
+    "terms": "https://example.org/terms",
+    "source": "https://example.org/source"
+  },
+  "shareChannels": ["copy", "email"],
+  "publisher": {
+    "name": "Example Organization",
+    "website": "https://example.org",
+    "privacy": "https://example.org/privacy",
+    "terms": "https://example.org/terms"
+  }
+}
