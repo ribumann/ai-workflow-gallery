@@ -242,7 +242,7 @@ export const integrationGuides: IntegrationGuide[] = [
     status: 'preview',
     statusLabel: branding.publisher ? 'Plugin package available' : 'Browser fallback available',
     statusDetail: branding.publisher
-      ? 'The package contains a skill, not a connector. Import may depend on your account entitlement and organizational policy; use the authorized browser if the package is unavailable or blocked.'
+      ? 'The package contains a skill, not a connector. Package availability does not establish organizational approval or account entitlement. Use the authorized browser if import is unavailable or blocked.'
       : 'Plugin package publication is not configured for this deployment. Organizational policy may further restrict installation; this status does not establish that it is permitted. The authorized browser remains available as the fallback.',
     sections: (origin) => [
       readiness, oauth(origin), introduction(origin, '/integrations/cowork'),

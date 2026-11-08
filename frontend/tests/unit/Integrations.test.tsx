@@ -72,14 +72,15 @@ describe('Tool integration guides', () => {
     renderGuide('/integrations/cowork')
     expect(screen.getByRole('heading', { name: /Option A — Review the Cowork plugin package/ })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /Option B — Use the authorized browser \(always available\)/ })).toBeInTheDocument()
-    expect(screen.getByText(/The owner must supply a publisher identity/)).toBeInTheDocument()
     expect(screen.getByText(/remains available when plugin import is unavailable or blocked by organizational policy/)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /MCP connector compatibility is not yet verified/ })).toBeInTheDocument()
     if (branding.publisher) {
+      expect(screen.getByText(/Package availability does not establish organizational approval/)).toBeInTheDocument()
       expect(screen.getByRole('link', { name: /Cowork plugin package/ })).toHaveAttribute(
         'href', '/downloads/ai-workflow-gallery-cowork-plugin.zip',
       )
     } else {
+      expect(screen.getByText(/The owner must supply a publisher identity/)).toBeInTheDocument()
       expect(screen.queryByRole('link', { name: /Cowork plugin package/ })).not.toBeInTheDocument()
     }
   })
